@@ -18,10 +18,12 @@ for json_file_name in json_file_names:
         ab = itertools.chain(json_text)
         numbersList = list(ab)
         print("\n")
-        for idx, addressArr in enumerate(numbersList):url = "https://etherscan.io/token/"+addressArr['address']
-        print(url)
         scraper = cfscrape.create_scraper()
-        scrapcontent = scraper.get(url).content
-        text_file = open("file/sample" + addressArr['address'] + ".html", "w")
-        text_file.write("%s" % scrapcontent)
+        for idx, addressArr in enumerate(numbersList):
+            urlAddr = addressArr['address']
+            print(urlAddr)
+            url = "https://etherscan.io/token/"+urlAddr        
+            scrapcontent = scraper.get(url).content
+            text_file = open("file/sample" + addressArr['address'] + ".html", "w")
+            text_file.write("%s" % scrapcontent)
         text_file.close()
